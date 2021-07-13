@@ -1,0 +1,5 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="port">9876</entry>
+    <entry key="processingTime">6</entry>
+</properties>
