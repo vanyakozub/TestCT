@@ -15,12 +15,10 @@ public class ProcessState extends State {
 
     public void process() {
         try {
-            System.out.println("process");
-            BufferedReader in = new BufferedReader(new InputStreamReader(server.getClientSocket().getInputStream()));
-            server.setInputData(in.readLine());
+            System.out.println("process " + server.getInputData());
             TimeUnit.SECONDS.sleep(server.getMinProcessingTime());//add time delay
             server.setState(new SendState(server));
-        } catch (IOException | InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

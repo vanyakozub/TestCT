@@ -14,11 +14,10 @@ public class SendState extends State {
 
     public void process() {
         try {
-            System.out.println("send");
+            System.out.println("send " + server.getInputData());
             PrintWriter out = new PrintWriter(server.getClientSocket().getOutputStream(), true);
             TimeUnit.SECONDS.sleep(server.getMinProcessingTime());//add time delay
             out.write(server.getInputData());
-            System.out.println(server.getInputData());
             server.setState(new ListenState(server));
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
