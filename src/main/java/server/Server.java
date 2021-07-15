@@ -7,13 +7,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayDeque;
 import java.util.Properties;
 
 public class Server {
     private State state;
     private int portNumber;
     private int minProcessingTime;
-    private String inputData;
+    private ArrayDeque<String> inputData;
 
     public Server (String configFilename) {
         Properties prop = new Properties();
@@ -23,6 +24,7 @@ public class Server {
             portNumber = Integer.parseInt(prop.getProperty("port"));
             serverSocket = new ServerSocket(portNumber);
             state = new ListenState(this);
+            inputData = new ArrayDeque<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,11 +38,11 @@ public class Server {
         this.minProcessingTime = minProcessingTime;
     }
 
-    public String getInputData() {
+    public ArrayDeque<String> getInputData() {
         return inputData;
     }
 
-    public void setInputData(String inputData) {
+    public void setInputData(ArrayDeque<String> inputData) {
         this.inputData = inputData;
     }
 
